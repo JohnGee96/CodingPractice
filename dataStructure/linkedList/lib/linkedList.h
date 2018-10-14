@@ -16,7 +16,8 @@ public:
     LinkedListNode<T>* tail;
     
     void remove(int index);
-    void insert(int value, int index);
+    void insert(T value, int index);
+    void append(T value);
     bool isEmpty();
     void print();
 
@@ -56,17 +57,19 @@ LinkedList<T>::LinkedList(std::vector<T> v) {
 template <typename T>
 LinkedList<T>::~LinkedList() {
     // std::cout << "Destructor, head: " << head << '\n';
-    if (size != 0) {
-        LinkedListNode<T>* nextPtr;
-        LinkedListNode<T>* cur = head;
-        while (cur != nullptr) {
-            nextPtr = cur->next;
-            delete cur;
-            cur = nextPtr;
-        }
-        head = tail = nullptr;
-        size = 0;
-    } 
+    // print();
+    // if (head != nullptr) {
+    //     LinkedListNode<T>* nextPtr;
+    //     LinkedListNode<T>* cur = head;
+    //     while (cur != nullptr) {
+    //         nextPtr = cur->next;
+    //         delete cur;
+    //         cur = nextPtr;
+    //     }
+    //     head = nullptr;
+    //     tail = nullptr;
+    //     size = 0;
+    // } 
 }
 
 template <typename T>
@@ -97,7 +100,7 @@ void LinkedList<T>::remove(int index) {
 }
 
 template <typename T>
-void LinkedList<T>::insert(int value, int index) {
+void LinkedList<T>::insert(T value, int index) {
     LinkedListNode<T>* prev = nullptr;
     LinkedListNode<T>* cur = head;
     if (index < 0) {
@@ -126,6 +129,11 @@ void LinkedList<T>::insert(int value, int index) {
         new_node->next = cur;
     ++size;
     return;
+}
+
+template <typename T>
+void LinkedList<T>::append(T value) {
+    insert(value, size);
 }
 
 template <typename T>

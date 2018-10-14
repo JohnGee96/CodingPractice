@@ -70,6 +70,22 @@ TEST(LinkedList, insertEmpty) {
     EXPECT_EQ(list.tail->value, 0);
 }
 
+TEST(LinkedList, appendEmpty) {
+    std::vector<int> v = {};
+    LinkedList<int> list = LinkedList<int>(v);
+    list.append(0);
+    EXPECT_EQ(list.head->value, 0);
+    EXPECT_EQ(list.tail->value, 0);
+}
+
+TEST(LinkedList, appendNonEmpty) {
+    std::vector<int> v = {1};
+    LinkedList<int> list = LinkedList<int>(v);
+    list.append(2);
+    EXPECT_EQ(list.head->next->value, 2);
+    EXPECT_EQ(list.tail->value, 2);
+}
+
 
 int main(int argc, char **argv) {
   testing::InitGoogleTest(&argc, argv);
