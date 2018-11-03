@@ -5,9 +5,10 @@ template <typename T>
 class LinkedListNode {
 public:
     LinkedListNode(T);
+    LinkedListNode();
 
     T value;
-    LinkedListNode<T>* next;
+    LinkedListNode<T>* next{nullptr};
 };
 
 template <typename T>
